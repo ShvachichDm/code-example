@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/AppTheme.Toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:title="@string/my_profile" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnLeave"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_gravity="end|center_vertical"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="@color/colorOnAccent"
+            android:elevation="10dp"
+            app:srcCompat="@drawable/ic_leave"/>
+    </FrameLayout>
+
+
+    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/nested_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <include
+                android:id="@+id/lName"
+                layout="@layout/item_info" />
+
+            <include
+                android:id="@+id/lBirthday"
+                layout="@layout/item_info" />
+
+            <include
+                android:id="@+id/lDriverLicenseNumber"
+                layout="@layout/item_info" />
+
+            <include
+                android:id="@+id/lPassportValidity"
+                layout="@layout/item_info" />
+
+            <include
+                android:id="@+id/lDriverLicenseValidity"
+                layout="@layout/item_info" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorBorder" />
+
+            <LinearLayout
+                android:id="@+id/llRouteHistory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorBackgroundSecond"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/route_history"
+                    android:textColor="@color/colorOnSurfaceSecond"
+                    android:textSize="14sp" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRouteHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fadingEdge="none"
+                    android:fillViewport="true"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_route_history" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnLoadMore"
+                        style="@style/AppTheme.ButtonWithIconAndText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="@string/load_next"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_update" />
+
+                    <androidx.core.widget.ContentLoadingProgressBar
+                        android:id="@+id/pbLoading"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_marginEnd="32dp"
+                        android:elevation="12dp"
+                        android:theme="@style/AppTheme.WhiteProgressbarTheme"
+                        android:visibility="invisible" />
+                </FrameLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>
