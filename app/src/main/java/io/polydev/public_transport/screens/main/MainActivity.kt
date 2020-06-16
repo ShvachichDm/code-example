@@ -30,11 +30,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 
 
-class MainActivity : AppCompatActivity(), CoroutineScope {
-
-    private val job = Job()
-    override val coroutineContext = Dispatchers.Main + job
-    private var serviceSupportJob: Job? = null
+class MainActivity : AppCompatActivity() {
 
     private var lastActiveFragmentTag = ""
     private var countUnreadNotifications = 0
@@ -66,17 +62,11 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         startSocketService()
     }
 
-    override fun onStop() {
-        super.onStop()
-        serviceSupportJob?.cancel()
+    override fun onDestroy() {
+        super.onDestroy()
         if(!PreferencesManager.getAuthorizationStatus()) {
             stopSocketService()
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        job.cancel()
     }
 
 
