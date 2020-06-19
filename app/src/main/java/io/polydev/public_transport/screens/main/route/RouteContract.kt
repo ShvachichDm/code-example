@@ -12,7 +12,7 @@ import io.polydev.public_transport.utils.enums.Reasons
 import io.polydev.public_transport.utils.enums.RouteTimeColor
 
 interface RouteContract {
-    abstract class View(layoutId: Int): BaseFragment<RouteViewModel>(layoutId, RouteViewModel::class.java) {
+    abstract class View(layoutId: Int): BaseFragment<ViewModel>(layoutId, ViewModel::class.java) {
         abstract fun observeRouteNumber(number: String)
         abstract fun observeTripTimes(tripTimes: ArrayList<TripTimeData>)
         abstract fun observeShowTripTimesPlaceHolder(show: Boolean)
@@ -39,6 +39,29 @@ interface RouteContract {
 
     abstract class ViewModel: BaseViewModel() {
         abstract val repository: Repository
+        abstract var routeNumber: MutableLiveData<String>
+        abstract var tripTimes : MutableLiveData<ArrayList<TripTimeData>>
+        abstract var showTripTimesPlaceHolder : MutableLiveData<Boolean>
+        abstract var showSelectReasonDialog: MutableLiveData<Boolean>
+        abstract var previousAddress: MutableLiveData<String>
+        abstract var previousTime: MutableLiveData<String>
+        abstract var previousCode : MutableLiveData<String>
+        abstract var previousAtStop: MutableLiveData<Boolean?>
+        abstract var currentAddress: MutableLiveData<String>
+        abstract var currentTime: MutableLiveData<String>
+        abstract var currentCode : MutableLiveData<String>
+        abstract var currentAtStop: MutableLiveData<Boolean?>
+        abstract var currentTimeColor: MutableLiveData<RouteTimeColor>
+        abstract var nextAddress: MutableLiveData<String>
+        abstract var nextTime: MutableLiveData<String>
+        abstract var nextCode : MutableLiveData<String>
+        abstract var nextAtStop: MutableLiveData<Boolean?>
+        abstract var navigateFinishScreenWithoutReturn: MutableLiveData<Event<Any>>
+        abstract var currentTripNumber: MutableLiveData<String>
+        abstract var currentTripStartTime: MutableLiveData<Long>
+        abstract var showTripTimes: MutableLiveData<Boolean>
+        abstract var showCurrentTripTime: MutableLiveData<Boolean>
+        
         override fun onStart() {
             repository.attachViewModel(this)
         }

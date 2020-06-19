@@ -33,12 +33,10 @@ class RouteFragment: RouteContract.View(R.layout.fragment_route) {
     }
 
     override fun setUpUI(view: View) {
-        launch {
             setUpDialog()
             setUpAdapters()
             setUpRecyclerViews(view)
             setUpListeners(view)
-        }
     }
 
     private fun setUpDialog() {
@@ -122,8 +120,6 @@ class RouteFragment: RouteContract.View(R.layout.fragment_route) {
             }
         }
     }
-
-
 
     override fun observeCurrentTripNumber(number: String) {
         launch {

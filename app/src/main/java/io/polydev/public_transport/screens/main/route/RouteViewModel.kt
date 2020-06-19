@@ -14,33 +14,31 @@ import javax.inject.Inject
 import kotlin.math.abs
 
 class RouteViewModel @Inject constructor(): RouteContract.ViewModel() {
+    
+    override val repository: RouteContract.Repository = RouteRepository()
 
-
-    override val repository: RouteContract.Repository =
-        RouteRepository()
-
-    var routeNumber = MutableLiveData<String>()
-    var tripTimes  = MutableLiveData<ArrayList<TripTimeData>>()
-    var showTripTimesPlaceHolder  = MutableLiveData<Boolean>()
-    var showSelectReasonDialog = MutableLiveData<Boolean>()
-    var previousAddress = MutableLiveData<String>()
-    var previousTime = MutableLiveData<String>()
-    var previousCode  = MutableLiveData<String>()
-    var previousAtStop = MutableLiveData<Boolean?>()
-    var currentAddress = MutableLiveData<String>()
-    var currentTime = MutableLiveData<String>()
-    var currentCode  = MutableLiveData<String>()
-    var currentAtStop = MutableLiveData<Boolean?>()
-    var currentTimeColor = MutableLiveData<RouteTimeColor>()
-    var nextAddress = MutableLiveData<String>()
-    var nextTime = MutableLiveData<String>()
-    var nextCode  = MutableLiveData<String>()
-    var nextAtStop = MutableLiveData<Boolean?>()
-    var navigateFinishScreenWithoutReturn = MutableLiveData<Event<Any>>()
-    var currentTripNumber = MutableLiveData<String>()
-    var currentTripStartTime = MutableLiveData<Long>()
-    var showTripTimes = MutableLiveData<Boolean>()
-    var showCurrentTripTime = MutableLiveData<Boolean>()
+    override var routeNumber = MutableLiveData<String>()
+    override var tripTimes  = MutableLiveData<ArrayList<TripTimeData>>()
+    override var showTripTimesPlaceHolder  = MutableLiveData<Boolean>()
+    override var showSelectReasonDialog = MutableLiveData<Boolean>()
+    override var previousAddress = MutableLiveData<String>()
+    override var previousTime = MutableLiveData<String>()
+    override var previousCode  = MutableLiveData<String>()
+    override var previousAtStop = MutableLiveData<Boolean?>()
+    override var currentAddress = MutableLiveData<String>()
+    override var currentTime = MutableLiveData<String>()
+    override var currentCode  = MutableLiveData<String>()
+    override var currentAtStop = MutableLiveData<Boolean?>()
+    override var currentTimeColor = MutableLiveData<RouteTimeColor>()
+    override var nextAddress = MutableLiveData<String>()
+    override var nextTime = MutableLiveData<String>()
+    override var nextCode  = MutableLiveData<String>()
+    override var nextAtStop = MutableLiveData<Boolean?>()
+    override var navigateFinishScreenWithoutReturn = MutableLiveData<Event<Any>>()
+    override var currentTripNumber = MutableLiveData<String>()
+    override var currentTripStartTime = MutableLiveData<Long>()
+    override var showTripTimes = MutableLiveData<Boolean>()
+    override var showCurrentTripTime = MutableLiveData<Boolean>()
 
     override fun onStart() {
         super.onStart()
