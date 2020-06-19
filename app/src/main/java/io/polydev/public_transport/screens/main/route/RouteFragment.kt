@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_route.view.*
 import kotlinx.android.synthetic.main.view_current_trip_time.view.*
 import kotlinx.coroutines.launch
 
-class RouteFragment: RouteContract.View(R.layout.fragment_route) {
+class RouteFragment : RouteContract.View(R.layout.fragment_route) {
 
     private lateinit var tripTimesAdapter: TripTimesRecyclerViewAdapter
     private lateinit var selectReasonDialog: BottomSheetDialog
@@ -33,10 +33,10 @@ class RouteFragment: RouteContract.View(R.layout.fragment_route) {
     }
 
     override fun setUpUI(view: View) {
-            setUpDialog()
-            setUpAdapters()
-            setUpRecyclerViews(view)
-            setUpListeners(view)
+        setUpDialog()
+        setUpAdapters()
+        setUpRecyclerViews(view)
+        setUpListeners(view)
     }
 
     private fun setUpDialog() {
@@ -67,56 +67,58 @@ class RouteFragment: RouteContract.View(R.layout.fragment_route) {
     }
 
     private fun setUpRecyclerViews(view: View) {
-        launch {
-            view.rvRingTimes.apply {
-                adapter = tripTimesAdapter
-            }
+        view.rvRingTimes.apply {
+            adapter = tripTimesAdapter
         }
     }
 
     private fun setUpListeners(view: View) {
-        launch {
-            view.apply {
-                fabFinishRoute.setOnClickListener {
-                    viewModel.onBtnFinishRouteClick()
-                }
+        view.apply {
+            fabFinishRoute.setOnClickListener {
+                viewModel.onBtnFinishRouteClick()
             }
         }
+
     }
 
     override fun observeViewModel() {
-        observe(viewModel.routeNumber,this::observeRouteNumber)
-        observe(viewModel.showSelectReasonDialog,this::observeShowSelectReasonDialog)
-        observe(viewModel.showCurrentTripTime,this::observeShowCurrentTripTime)
-        observe(viewModel.currentTripNumber,this::observeCurrentTripNumber)
-        observe(viewModel.currentTripStartTime,this::observeCurrentTripTime)
-        observe(viewModel.currentCode,this::observeCurrentCode)
-        observe(viewModel.previousCode,this::observePreviousCode)
-        observe(viewModel.nextCode,this::observeNextCode)
-        observe(viewModel.currentAddress,this::observeCurrentAddress)
-        observe(viewModel.previousAddress,this::observePreviousAddress)
-        observe(viewModel.nextAddress,this::observeNextAddress)
-        observe(viewModel.currentTime,this::observeCurrentTime)
-        observe(viewModel.currentTimeColor,this::observeCurrentTimeColor)
-        observe(viewModel.previousTime,this::observePreviousTime)
-        observe(viewModel.nextTime,this::observeNextTime)
-        observe(viewModel.currentAtStop,this::observeCurrentAtStop)
-        observe(viewModel.previousAtStop,this::observePreviousAtStop)
-        observe(viewModel.nextAtStop,this::observeNextAtStop)
-        observe(viewModel.navigateFinishScreenWithoutReturn,this::observeNavigateFinishScreenWithoutReturn)
-        observe(viewModel.showTripTimes,this::observeShowTripTimes)
-        observe(viewModel.tripTimes,this::observeTripTimes)
-        observe(viewModel.showTripTimesPlaceHolder,this::observeShowTripTimesPlaceHolder)
+        observe(viewModel.routeNumber, this::observeRouteNumber)
+        observe(viewModel.showSelectReasonDialog, this::observeShowSelectReasonDialog)
+        observe(viewModel.showCurrentTripTime, this::observeShowCurrentTripTime)
+        observe(viewModel.currentTripNumber, this::observeCurrentTripNumber)
+        observe(viewModel.currentTripStartTime, this::observeCurrentTripTime)
+        observe(viewModel.currentCode, this::observeCurrentCode)
+        observe(viewModel.previousCode, this::observePreviousCode)
+        observe(viewModel.nextCode, this::observeNextCode)
+        observe(viewModel.currentAddress, this::observeCurrentAddress)
+        observe(viewModel.previousAddress, this::observePreviousAddress)
+        observe(viewModel.nextAddress, this::observeNextAddress)
+        observe(viewModel.currentTime, this::observeCurrentTime)
+        observe(viewModel.currentTimeColor, this::observeCurrentTimeColor)
+        observe(viewModel.previousTime, this::observePreviousTime)
+        observe(viewModel.nextTime, this::observeNextTime)
+        observe(viewModel.currentAtStop, this::observeCurrentAtStop)
+        observe(viewModel.previousAtStop, this::observePreviousAtStop)
+        observe(viewModel.nextAtStop, this::observeNextAtStop)
+        observe(
+            viewModel.navigateFinishScreenWithoutReturn,
+            this::observeNavigateFinishScreenWithoutReturn
+        )
+        observe(viewModel.showTripTimes, this::observeShowTripTimes)
+        observe(viewModel.tripTimes, this::observeTripTimes)
+        observe(viewModel.showTripTimesPlaceHolder, this::observeShowTripTimesPlaceHolder)
     }
 
     override fun observeShowCurrentTripTime(show: Boolean) {
-        if(show) {
-            view?.vCurrentTripTime?.apply {
-                visibility = View.VISIBLE
-            }
-        } else {
-            view?.vCurrentTripTime?.apply {
-                visibility = View.GONE
+        launch {
+            if (show) {
+                view?.vCurrentTripTime?.apply {
+                    visibility = View.VISIBLE
+                }
+            } else {
+                view?.vCurrentTripTime?.apply {
+                    visibility = View.GONE
+                }
             }
         }
     }
@@ -136,9 +138,10 @@ class RouteFragment: RouteContract.View(R.layout.fragment_route) {
             }
         }
     }
+
     override fun observeShowSelectReasonDialog(show: Boolean) {
         launch {
-            if(show) {
+            if (show) {
                 selectReasonDialog.show()
             } else {
                 selectReasonDialog.dismiss()
@@ -201,15 +204,30 @@ class RouteFragment: RouteContract.View(R.layout.fragment_route) {
 
     override fun observeCurrentTimeColor(color: RouteTimeColor) {
         launch {
-            when(color) {
+            when (color) {
                 RouteTimeColor.RED -> {
-                    view!!.tvTimeCurrent.setTextColor(ContextCompat.getColorStateList(context!!,R.color.colorRed))
+                    view!!.tvTimeCurrent.setTextColor(
+                        ContextCompat.getColorStateList(
+                            context!!,
+                            R.color.colorRed
+                        )
+                    )
                 }
                 RouteTimeColor.GREEN -> {
-                    view!!.tvTimeCurrent.setTextColor(ContextCompat.getColorStateList(context!!,R.color.colorAccent))
+                    view!!.tvTimeCurrent.setTextColor(
+                        ContextCompat.getColorStateList(
+                            context!!,
+                            R.color.colorAccent
+                        )
+                    )
                 }
                 else -> {
-                    view!!.tvTimeCurrent.setTextColor(ContextCompat.getColorStateList(context!!,R.color.colorOnSurfaceSecond))
+                    view!!.tvTimeCurrent.setTextColor(
+                        ContextCompat.getColorStateList(
+                            context!!,
+                            R.color.colorOnSurfaceSecond
+                        )
+                    )
                 }
             }
         }
@@ -230,7 +248,7 @@ class RouteFragment: RouteContract.View(R.layout.fragment_route) {
 
     override fun observeCurrentAtStop(atStop: Boolean?) {
         launch {
-            when(atStop) {
+            when (atStop) {
                 null -> {
                     view!!.ivAtStopCurrent.visibility = View.GONE
 
@@ -253,7 +271,7 @@ class RouteFragment: RouteContract.View(R.layout.fragment_route) {
 
     override fun observePreviousAtStop(atStop: Boolean?) {
         launch {
-            when(atStop) {
+            when (atStop) {
                 null -> {
                     view!!.ivAtStopPrevious.visibility = View.GONE
                 }
@@ -275,7 +293,7 @@ class RouteFragment: RouteContract.View(R.layout.fragment_route) {
 
     override fun observeNextAtStop(atStop: Boolean?) {
         launch {
-            when(atStop) {
+            when (atStop) {
                 null -> {
                     view!!.ivAtStopNext.visibility = View.GONE
                 }
@@ -305,7 +323,7 @@ class RouteFragment: RouteContract.View(R.layout.fragment_route) {
 
     override fun observeShowTripTimes(show: Boolean) {
         launch {
-            if(show) {
+            if (show) {
                 view?.rvRingTimes?.visibility = View.VISIBLE
             } else {
                 view?.rvRingTimes?.visibility = View.GONE
@@ -321,7 +339,7 @@ class RouteFragment: RouteContract.View(R.layout.fragment_route) {
 
     override fun observeShowTripTimesPlaceHolder(show: Boolean) {
         launch {
-            if(show) {
+            if (show) {
                 view?.tvPlaceholder?.visibility = View.VISIBLE
             } else {
                 view?.tvPlaceholder?.visibility = View.GONE
