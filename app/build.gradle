@@ -81,9 +81,6 @@ dependencies {
     //Dagger
     implementation 'com.google.dagger:dagger:2.27'
     kapt 'com.google.dagger:dagger-compiler:2.27'
-    implementation 'com.google.dagger:dagger-android:2.27'
-    implementation 'com.google.dagger:dagger-android-support:2.27'
-    kapt 'com.google.dagger:dagger-android-processor:2.27'
     kaptAndroidTest 'com.google.dagger:dagger-compiler:2.27'
     //Yandex map
 //    implementation 'com.yandex.android:mapkit:3.4.0'

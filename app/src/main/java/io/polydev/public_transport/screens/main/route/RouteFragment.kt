@@ -8,6 +8,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import io.polydev.public_transport.R
 import io.polydev.public_transport.base.utils.Event
 import io.polydev.public_transport.base.utils.observe
+import io.polydev.public_transport.base.utils.observeEvent
 import io.polydev.public_transport.data_models.TripTimeData
 import io.polydev.public_transport.di.ComponentManager
 import io.polydev.public_transport.screens.main.route.adapters.TripTimesRecyclerViewAdapter
@@ -100,7 +101,7 @@ class RouteFragment : RouteContract.View(R.layout.fragment_route) {
         observe(viewModel.currentAtStop, this::observeCurrentAtStop)
         observe(viewModel.previousAtStop, this::observePreviousAtStop)
         observe(viewModel.nextAtStop, this::observeNextAtStop)
-        observe(
+        observeEvent(
             viewModel.navigateFinishScreenWithoutReturn,
             this::observeNavigateFinishScreenWithoutReturn
         )

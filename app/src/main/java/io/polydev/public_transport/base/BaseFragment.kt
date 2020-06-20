@@ -15,9 +15,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import javax.inject.Inject
 
-/**
- * Created by AhmedEltaher
- */
 
 
 abstract class BaseFragment<VM: BaseViewModel>(private val layoutId: Int, private val viewModelClass: Class<VM>) : Fragment(), CoroutineScope{
